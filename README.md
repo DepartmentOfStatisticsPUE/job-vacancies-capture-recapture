@@ -31,5 +31,26 @@ Platform Info:
 Packages
 
 ```
-
+ [6e4b80f9] BenchmarkTools v0.7.0
+  [336ed68f] CSV v0.8.4
+  [13f3f980] CairoMakie v0.3.19
+  [49dc2e85] Calculus v0.5.1
+  [a93c6f00] DataFrames v1.0.1
+  [31c24e10] Distributions v0.23.12
+  [f6369f11] ForwardDiff v0.10.18
+  [da1fdf0e] FreqTables v0.4.4
+  [38e38edf] GLM v1.4.2
+  [7073ff75] IJulia v1.23.2
+  [b6b21f68] Ipopt v0.6.5
+  [682c06a0] JSON v0.21.1
+  [4076af6c] JuMP v0.21.5
+  [23fbe1c1] Latexify v0.15.5
+  [ee78f7c6] Makie v0.12.0
+  [ff71e718] MixedModels v3.6.0
+  [429524aa] Optim v1.3.0
+  [b98c9c47] Pipe v1.3.0
+  [91a5bcdd] Plots v1.13.2
+  [2913bbd2] StatsBase v0.33.6
+  [f3b207a7] StatsPlots v0.14.20
+  [ebf5ac4f] TexTables v0.2.3
 ```
