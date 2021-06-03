@@ -1,6 +1,6 @@
-# Estimating job vacancy statistics based solely on administrative and online data
+# Estimating the number of entities with vacancies using administrative and online data
 
-Replicating results from the paper "Estimating job vacancy statistics based solely on administrative and online data" by Maciej Beręsewicz, Herman Cherniaiev and Robert Pater
+Replicating results from the paper "Estimating the number of entities with vacancies using administrative and online data" by Maciej Beręsewicz, Herman Cherniaiev and Robert Pater
 
 **Abstract**
 
