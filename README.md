@@ -15,6 +15,16 @@ The proposed methodology uses existing data, instead of creating new ones, and m
 
 ## Replication information
 
+1. Go to https://julialang.org/downloads/ and download at least `julia 1.6.0` (tested under this version)
+2. Clone this repository with `git clone https://github.com/DepartmentOfStatisticsPUE/job-vacancies-capture-recapture`
+3. Go to this folder and run the following command: 
+
+```
+julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
+```
+
+4. After installing all required packages run the notebooks from the folder `codes/`
+
 ## System
 
 ```julia
@@ -31,26 +41,24 @@ Platform Info:
 Packages
 
 ```
- [6e4b80f9] BenchmarkTools v0.7.0
-  [336ed68f] CSV v0.8.4
-  [13f3f980] CairoMakie v0.3.19
-  [49dc2e85] Calculus v0.5.1
-  [a93c6f00] DataFrames v1.0.1
-  [31c24e10] Distributions v0.23.12
+  [336ed68f] CSV v0.8.5
+  [13f3f980] CairoMakie v0.5.6
+  [a93c6f00] DataFrames v1.1.1
+  [31c24e10] Distributions v0.25.2
   [f6369f11] ForwardDiff v0.10.18
-  [da1fdf0e] FreqTables v0.4.4
-  [38e38edf] GLM v1.4.2
-  [7073ff75] IJulia v1.23.2
   [b6b21f68] Ipopt v0.6.5
-  [682c06a0] JSON v0.21.1
-  [4076af6c] JuMP v0.21.5
-  [23fbe1c1] Latexify v0.15.5
-  [ee78f7c6] Makie v0.12.0
-  [ff71e718] MixedModels v3.6.0
-  [429524aa] Optim v1.3.0
+  [4076af6c] JuMP v0.21.8
+  [b964fa9f] LaTeXStrings v1.2.1
+  [23fbe1c1] Latexify v0.15.6
+  [ee78f7c6] Makie v0.13.11
+  [15e1cf62] NPZ v0.4.1
   [b98c9c47] Pipe v1.3.0
-  [91a5bcdd] Plots v1.13.2
-  [2913bbd2] StatsBase v0.33.6
-  [f3b207a7] StatsPlots v0.14.20
-  [ebf5ac4f] TexTables v0.2.3
+  [91a5bcdd] Plots v1.16.0
+  [92933f4c] ProgressMeter v1.7.1
+  [2913bbd2] StatsBase v0.33.8
+  [a5390f91] ZipFile v0.9.3
+  [8ba89e20] Distributed
+  [37e2e46d] LinearAlgebra
+  [9a3f8284] Random
+  [10745b16] Statistics
 ```
