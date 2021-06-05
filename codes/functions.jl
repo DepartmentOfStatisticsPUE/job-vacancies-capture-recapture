@@ -74,6 +74,21 @@ function create_data(data, quarter::Symbol, quarter_days::Symbol, days::Int, var
     return(out_df)
 end    
 
+function create_data_size(data, quarter::Symbol, quarter_days::Symbol, days::Int)
+    out_df = filter(quarter => ==(true), data)
+    out_df = filter(quarter_days => <=(days), out_df)
+    out_df = unique(out_df[:,[:source, :id_unit, :size]])
+    out_df[!, :n] .= 1
+    out_df = unstack(out_df, [:id_unit, :size], :source, :n)
+    out_df.cbop = coalesce.(out_df.cbop, 0)
+    out_df.pracuj = coalesce.(out_df.pracuj, 0)
+    out_df[!, :size2] .= ifelse.(out_df.size .== "D", "D", "SM")
+    out_df = groupby(out_df, [:size2, :cbop, :pracuj])
+    out_df = combine(out_df, nrow => :count)
+    sort!(out_df, [:size2, :cbop, :pracuj], rev = true) 
+    return(out_df)
+end
+
 function cr_averse_analysis(data, quarter::Symbol, quarter_days::Symbol, days::Int, var::Symbol, var_lev,
                             bootstrap = false, bootstrap_samples = 500, verbose = true)
     
