@@ -33,9 +33,9 @@
 + q3 -- an indicator variable whether ad period (date_start, date_end) covers the end of 2018Q3; boolean
 + q4 -- an indicator variable whether ad period (date_start, date_end) covers the end of 2018Q4; boolean
 + q1_days -- the number of days between date_start and the end of 2018Q1
-+ q2_days -- the number of days between date_start and the end of 2018Q1
-+ q3_days -- the number of days between date_start and the end of 2018Q1
-+ q4_days -- the number of days between date_start and the end of 2018Q1
++ q2_days -- the number of days between date_start and the end of 2018Q2
++ q3_days -- the number of days between date_start and the end of 2018Q3
++ q4_days -- the number of days between date_start and the end of 2018Q4
 + woj -- voivodeship (regions in Poland, 16 levels, dictionary: https://en.wikipedia.org/wiki/ISO_3166-2:PL); numeric 
 + pkd -- NACE sector (19 levels; dictionary: https://ec.europa.eu/competition/mergers/cases/index/nace_all.html); character
 + size -- size of the entity measured by number of employees (3 levels; M = small up to 9persons, S = medium 10-49, D = Big 50+); character
