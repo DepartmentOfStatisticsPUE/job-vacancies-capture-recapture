@@ -24,6 +24,7 @@ julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 ```
 
 4. After installing all required packages run the notebooks from the folder `codes/`
+5. Please consult `data/data-for-capture-recapture.md` for the description of the data
 
 ## System
 
