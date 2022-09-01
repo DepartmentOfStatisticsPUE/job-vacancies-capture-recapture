@@ -39,6 +39,8 @@ function cr_averse_optimize(data)
     
     model = Model(Ipopt.Optimizer)
     set_optimizer_attribute(model, "print_level", 0)
+#    @variable(model, N_A, start = N_A_naive/2)
+#    @variable(model, N_B, start = N_B_naive/2)
     @variable(model, x_0a <= N_A <= N_A_naive, start = N_A_naive/2)
     @variable(model, x_0b <= N_B <= N_B_naive, start = N_B_naive/2)
     @variable(model, 0.0001 <= p_1 <= 0.9999, start = 0.1)
@@ -148,4 +150,75 @@ function sample_from_n(N, α, p_1, p_2, samps)
    p_00 = (1-α)*(1-p_1)*(1-p_2)
    p = [p_11, p_10, p_01, p_00]
    return rand(Multinomial(N, p), samps)
+end
+
+## for grid search
+function expand_grid(; kws...)
+    names, vals = keys(kws), values(kws)
+    return DataFrame(NamedTuple{names}(t) for t in Iterators.product(vals...))
+end
+
+## method of moments
+function mme_function(θ, data)
+    N_A = θ[1]
+    N_B = θ[2] 
+    α = θ[3]
+    p_1 = θ[4] 
+    p_2a = θ[5]
+    p_2b = θ[6]
+    
+    x_11a = data[1]
+    x_10a = data[2]
+    x_01a = data[3]
+    x_11b = data[4]
+    x_10b = data[5]
+    x_01b = data[6]
+    x_0a = x_11a + x_10a + x_01a
+    x_0b = x_11b + x_10b + x_01b
+    
+    p_11a = (1-α)*p_1*p_2a 
+    p_10a = α*p_1 + (1-α)*p_1*(1-p_2a)
+    p_01a = α*(1-p_1)+(1-α)*(1-p_1)*p_2a
+    p_11b = (1-α)*p_1*p_2b 
+    p_10b = α*p_1 + (1-α)*p_1*(1-p_2b)
+    p_01b = α*(1-p_1)+(1-α)*(1-p_1)*p_2b
+    
+    return [N_A*p_11a - x_11a,
+            N_A*p_10a - x_10a,
+            N_A*p_01a - x_01a,
+            N_B*p_11b - x_11b,
+            N_B*p_10b - x_10b,
+            N_B*p_01b - x_01b]
+end
+
+function mme_function!(F, θ, data)
+    N_A = θ[1]
+    N_B = θ[2] 
+    α = θ[3]
+    p_1 = θ[4] 
+    p_2a = θ[5]
+    p_2b = θ[6]
+    
+    x_11a = data[1]
+    x_10a = data[2]
+    x_01a = data[3]
+    x_11b = data[4]
+    x_10b = data[5]
+    x_01b = data[6]
+    x_0a = x_11a + x_10a + x_01a
+    x_0b = x_11b + x_10b + x_01b
+    
+    p_11a = (1-α)*p_1*p_2a 
+    p_10a = α*p_1 + (1-α)*p_1*(1-p_2a)
+    p_01a = α*(1-p_1)+(1-α)*(1-p_1)*p_2a
+    p_11b = (1-α)*p_1*p_2b 
+    p_10b = α*p_1 + (1-α)*p_1*(1-p_2b)
+    p_01b = α*(1-p_1)+(1-α)*(1-p_1)*p_2b
+    
+    F[1] = N_A*p_11a - x_11a
+    F[2] = N_A*p_10a - x_10a
+    F[3] = N_A*p_01a - x_01a
+    F[4] = N_B*p_11b - x_11b
+    F[5] = N_B*p_10b - x_10b
+    F[6] = N_B*p_01b - x_01b    
 end
